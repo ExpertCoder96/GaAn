@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaAn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="passcode-screen" class="screen">
+<img src="images/notification-icon.png" alt="App Icon" id="app-icon">
+        <h1>GaAn</h1>
+        <p>where sweet meets sassy</p>
+        <input type="password" id="passcode" placeholder="Enter passcode">
+        <button onclick="validatePasscode()">Submit</button>
+    </div>
+
+    <div id="main-screen" style="display:none;">
+        <header class="header">
+            <div class="hamburger" id="menu-toggle">&#9776;</div>
+            <div class="title">GaAn</div>
+        </header>
+
+        <div id="nav-menu" class="nav-menu scrollable">
+            <ul>
+                <li onclick="showScreen('home')">Home</li>
+                <li onclick="showScreen('date-night-diaries')">Date Night Diaries</li>
+                <li onclick="showScreen('gagans-good-vibes')">Gagan's Good Vibes</li>
+                <li onclick="showScreen('gagans-gripe-box')">Gagan's Gripe Box</li>
+                <li onclick="showScreen('planned-dates')">Planned Dates</li>
+                <li onclick="showScreen('date-archive')">Date Archive</li>
+                <li onclick="showScreen('previously-good-vibes')">Previously on Gagan's Good Vibes</li>
+                <li onclick="showScreen('previously-mean-things')">Previously on Gagan's Gripe Box</li>
+                <li onclick="showScreen('alarm-screen')">Alarm</li>
+            </ul>
+        </div>
+
+        <div id="main-content" class="main-content scrollable">
+            <div id="home" class="screen">
+                <h2>Welcome, Gagan!</h2>
+                      <div id="profile-container">
+            <img src="images/profile-picture.jpg" alt="Profile Picture" id="profile-picture">
+                <p>World's best boyfriend and accidental coder</p>
+                        </div>
+              <div id="anniversary-counter">
+        <h2>Days Until Anniversary:</h2>
+                
+        <p id="days-until-anniversary">Calculating...</p>
+ <button onclick="LockApp()">Lock App</button>
+    </div>
+            </div>
+
+            <div id="date-night-diaries" class="screen">
+                <h3>Date Night Diaries</h3>
+                <input type="text" id="event-name" placeholder=" Date Idea">
+                <select id="event-type">
+                    <option value="" disabled selected>Type</option>
+                    <option value="activity">Activity</option>
+                    <option value="place">Place</option>
+                    <option value="idea">Idea</option>
+                </select>
+                <button onclick="addEvent()">Add</button>
+            
+<p>Pro Tip: Cooking together can be romantic. Or it can end with you both covered getting irritated and arguing about how to properly chop an onion. Either way, it’s memorable!</p>
+              </div>
+            <div id="gagans-good-vibes" class="screen">
+                <h3>Gagan's Good Vibes</h3>
+                <input type="text" id="good-thing" placeholder="Enter Appu's Sweet Nothings">
+                <button onclick="confirmAddGoodThing()">Add</button>
+              <p>Pro Tip: “Whenever you need a confidence boost, check out this list. It’s like a personal cheer squad, courtesy of me!”</p>
+            </div>
+
+            <div id="gagans-gripe-box" class="screen">
+                <h3>Gagan's Gripe Box</h3>
+                <input type="text" id="mean-thing" placeholder="Enter Appu's Oops Moments">
+                <button onclick="confirmAddMeanThing()">Add</button>
+              <p>Pro Tip: “This screen is for the ‘mean’ stuff I say, but don’t forget: My intention is always to tease, not to hurt! Moreover, it’s all part of the charm. We both know I don’t mean to be a grump!”</p>
+            </div>
+
+            <div id="planned-dates" class="screen">
+                <h3>Planned Dates</h3>
+              <p>"Planning a date night? Make sure to schedule some downtime for deciding where to eat. It's a crucial part of the experience!"</p>
+                <table id="planned-dates-table">
+                    <thead>
+                        <tr>
+                            <th>Entry</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="planned-dates-list"></tbody>
+                </table>
+            </div>
+
+            <div id="previously-good-vibes" class="screen">
+                <h3>Previously on Gagan's Good Vibes</h3>
+              <p>"If you’re ever feeling down, just remember this list exists—proof that I do, in fact, say nice things!"</p>
+                <table id="previously-good-vibes-table">
+                    <thead>
+                        <tr>
+                            <th>Entry</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previously-good-vibes-list"></tbody>
+                </table>
+            </div>
+
+            <div id="previously-mean-things" class="screen">
+                <h3>Previously on Gagan's Gripe Box</h3>
+              <p>“Think of this list as a trophy case for my most memorable moments of ‘oops.’ It’s proof of how much I care, even if it comes out a bit crooked!”</p>
+                <table id="previously-mean-things-table">
+                    <thead>
+                        <tr>
+                            <th>Mean Things</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previously-mean-things-list"></tbody>
+                </table>
+            </div>
+
+<div id="alarm-screen" class="screen">
+    <h3>Alarm</h3>
+    <div id="time-display">
+        <p id="current-time-heading">Current Time:</p>
+        <p id="current-time">--:--</p>
+    </div>
+    <div id="alarm-time-display">
+        <p>Alarm Set For: 16:45</p>
+    </div>
+    <p id="alarm-status">Alarm status: Not started</p>
+          <button id="start-alarm" onclick="startAlarm()">Start Alarm</button>
+          <button id="stop-alarm" onclick="stopAlarm()">Stop Alarm</button>
+            </div>
+    <div id="date-archive" class="screen" style="display: none;">
+        <h3>Date Archive</h3>
+        <p>"Here's a look at all the dates you’ve marked as done. You can either remove them from the archive or send them back to your planned dates."</p>
+        <table id="date-archive-table">
+            <thead>
+                <tr>
+                    <th>Entry</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="archived-dates-list"></tbody>
+        </table>
+    </div>
+</div>
+
+        <footer class="footer">
+            <p>Created by Appu with ❤️ &copy; 2024 </p>
+        </footer>
+    </div>
+ <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
+            <p id="popup-message"></p>
+            <button id="popup-confirm" onclick="confirmPopup()">OK</button>
+        </div>
+    </div>
+<div id="confirmation-popup" class="popup">
+    <div class="popup-content">
+        <span id="confirmation-popup-close" class="popup-close" onclick="closeConfirmationPopup()">&times;</span>
+        <p id="confirmation-popup-message"></p>
+        <button id="confirmation-popup-confirm">Yes</button>
+        <button id="confirmation-popup-cancel">No</button>
+    </div>
+</div>
+  <div id="lock-confirmation-popup" class="popup">
+    <div class="popup-content">
+        <span id="lock-confirmation-popup-close" class="popup-close" onclick="closeLockConfirmationPopup()">&times;</span>
+        <p>Do you want to lock the app?</p>
+        <button id="lock-confirmation-popup-confirm" onclick="confirmLockApp()">Yes</button>
+        <button id="lock-confirmation-popup-cancel" onclick="closeLockConfirmationPopup()">No</button>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
